@@ -11,25 +11,25 @@ const todos = ref([
     id: 1,
     text: '할 일 1',
     completed: false,
-    createAt: '2025-03-24',
+    createAt: '2025.03.24',
   },
   {
     id: 2,
     text: '할 일 2',
     completed: true,
-    createAt: '2025-03-25',
+    createAt: '2025.03.25',
   },
   {
     id: 3,
     text: '할 일 3',
     completed: false,
-    createAt: '2025-03-26',
+    createAt: '2025.03.26',
   },
   {
     id: 4,
     text: '할 일 4',
     completed: false,
-    createAt: '2025-03-26',
+    createAt: '2025.03.26',
   },
 ]);
 
