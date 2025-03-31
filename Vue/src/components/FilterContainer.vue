@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue';
 
-let filter = 'all';
+const filter = ref('all');
 const emit = defineEmits(['filter-changed']);
 
 const setFilter = (f) => {
-  filter = f;
+  filter.value = f;
   emit('filter-changed', { filter: f });
 };
 </script>
