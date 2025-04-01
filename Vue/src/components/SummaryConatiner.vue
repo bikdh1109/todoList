@@ -1,7 +1,17 @@
 <script setup>
-defineProps({ activeTodoCount: Number, completedTodoCount: Number });
+import { computed } from 'vue';
+
+const props = defineProps({
+  activeTodoCount: Number,
+  completedTodoCount: Number,
+});
 
 const emit = defineEmits(['clear-completed']);
+
+const progressPercentage = computed(() => {
+  const total = props.activeTodoCount + props.completedTodoCount;
+  return total > 0 ? Math.round((props.completedTodoCount / total) * 100) : 0;
+});
 </script>
 
 <template>
@@ -13,6 +23,13 @@ const emit = defineEmits(['clear-completed']);
       <span>완료항목</span><span>{{ completedTodoCount }}</span>
     </p>
     <button @click="emit('clear-completed')">완료된 항목 삭제</button>
+  </div>
+  <hr />
+  <div class="progress-contain">
+    <div class="progress-bar">
+      <div class="progress" :style="{ width: progressPercentage + '%' }"></div>
+    </div>
+    <p class="progress-percent">목표 달성률 {{ progressPercentage }} %</p>
   </div>
 </template>
 
@@ -41,5 +58,25 @@ const emit = defineEmits(['clear-completed']);
 }
 .todo-summary button {
   background-color: var(--blue-dark);
+}
+
+.progress-contain {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 10px 10px;
+  gap: 1rem;
+}
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: lightgray;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress {
+  height: 100%;
+  width: 0%;
+  background: lightgreen;
 }
 </style>
